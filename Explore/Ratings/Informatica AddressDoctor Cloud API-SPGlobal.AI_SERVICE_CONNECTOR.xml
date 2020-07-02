@@ -1,0 +1,456 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>Qk81V4AdypKwKBq-gt-1082173-2019-02-26T16:54:39.679Z::svc.xml</types1:EntryId>
+      <types1:Name>Informatica_AddressDoctor_Cloud_API-SPGlobal-1</types1:Name>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description>Custom Service Process to call out to Informatica Address Doctor Cloud</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>AV,AddressDoctor</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>nitinkn@suborg.com</types1:CreatedBy>
+      <types1:CreationDate>2019-02-26T16:54:40Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="false"
+                            debug="false"
+                            displayName="Informatica AddressDoctor Cloud API-SPGlobal"
+                            label=""
+                            name="Informatica_AddressDoctor_Cloud_API-SPGlobal-1"
+                            uuid="093f4ccb-6428-4815-97ff-c60d2880b500">
+            <description>Custom Service Process to call out to Informatica Address Doctor Cloud</description>
+            <tags>AV,AddressDoctor</tags>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd">
+               <connectionAttribute description="'Login' must contain the Informatica AddressDoctor Data Quality Center (DQC) account ID."
+                                    masked="false"
+                                    name="Login"
+                                    required="true"
+                                    testWith="156429"
+                                    type="string"/>
+               <connectionAttribute description="The password parameter contains the password for the Informatica AddressDoctor DQC account ID provided as the login."
+                                    masked="true"
+                                    name="Password"
+                                    required="true"
+                                    testWith=""
+                                    type="string"/>
+               <connectionAttribute description="The Endpoint URL of the connection"
+                                    masked="false"
+                                    name="EndPointUrl"
+                                    required="true"
+                                    testWith="https://validator5.addressdoctor.com/webservice5/v2/addressvalidation.asmx"
+                                    type="string"/>
+               <connectionAttribute description=""
+                                    masked="false"
+                                    name="Preferred Language"
+                                    required="false"
+                                    testWith="ENGLISH"
+                                    type="string"/>
+            </connectionAttributes>
+            <actions>
+               <action category="Address Validation"
+                       failOnError="true"
+                       forSearch="false"
+                       label="Interactive"
+                       maxRedirects="100"
+                       name="Interactive"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description>Informatica AddressDoctor Cloud returns suggestions that match the address you input.</description>
+                  <input>
+                     <parameter description="House/Building number, street name, and street type"
+                                label="addressStreet"
+                                name="addressStreet"
+                                required="true"
+                                testWith="12 Riverside Dr."
+                                type="string"/>
+                     <parameter description="City/Town"
+                                label="addressCity"
+                                name="addressCity"
+                                required="true"
+                                testWith="Palmyra"
+                                type="string"/>
+                     <parameter description="State"
+                                label="addressState"
+                                name="addressState"
+                                required="true"
+                                testWith="Virginia"
+                                type="string"/>
+                     <parameter description="Country"
+                                label="addressCountry"
+                                name="addressCountry"
+                                required="true"
+                                testWith="United States"
+                                type="string"/>
+                     <parameter description="Zipcode"
+                                label="addressZipcode"
+                                name="addressZipcode"
+                                required="false"
+                                testWith="22963"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated" url="{$EndPointUrl}" verb="POST">
+                        <httpHeaders>
+                           <header name="Content-Type">application/soap+xml;charset=UTF-8</header>
+                        </httpHeaders>
+                        <body>&amp;lt;soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:v2="http://validator5.AddressDoctor.com/Webservice5/v2"&amp;gt;
+   &amp;lt;soap:Header/&amp;gt;
+   &amp;lt;soap:Body&amp;gt;
+      &amp;lt;v2:Process&amp;gt;
+         &amp;lt;v2:login&amp;gt;{$Login}&amp;lt;/v2:login&amp;gt;
+         &amp;lt;v2:password&amp;gt;{$Password}&amp;lt;/v2:password&amp;gt;
+         &amp;lt;v2:parameters&amp;gt;
+            &amp;lt;v2:ProcessMode&amp;gt;INTERACTIVE&amp;lt;/v2:ProcessMode&amp;gt;
+            &amp;lt;v2:ServiceParameters&amp;gt;
+            	&amp;lt;v2:MaxResultCount&amp;gt;5&amp;lt;/v2:MaxResultCount&amp;gt;
+               	&amp;lt;v2:UseTransactionPool&amp;gt;PRODUCTION&amp;lt;/v2:UseTransactionPool&amp;gt;
+            &amp;lt;/v2:ServiceParameters&amp;gt;
+            &amp;lt;v2:ValidationParameters&amp;gt;
+               	&amp;lt;v2:MaxResultCount&amp;gt;5&amp;lt;/v2:MaxResultCount&amp;gt;
+               	&amp;lt;v2:CountryType&amp;gt;ISO2&amp;lt;/v2:CountryType&amp;gt;
+               	&amp;lt;v2:PreferredScript&amp;gt;ASCII_SIMPLIFIED&amp;lt;/v2:PreferredScript&amp;gt;
+               	&amp;lt;v2:PreferredLanguage&amp;gt;{$PreferredLanguage}&amp;lt;/v2:PreferredLanguage&amp;gt;
+            &amp;lt;/v2:ValidationParameters&amp;gt;
+         &amp;lt;/v2:parameters&amp;gt;
+         &amp;lt;v2:addresses&amp;gt;
+            &amp;lt;v2:Address&amp;gt;         
+              &amp;lt;v2:Street&amp;gt;&amp;lt;v2:string&amp;gt;{$addressStreet}&amp;lt;/v2:string&amp;gt;&amp;lt;/v2:Street&amp;gt;
+              &amp;lt;v2:Locality&amp;gt;&amp;lt;v2:string&amp;gt;{$addressCity}&amp;lt;/v2:string&amp;gt;&amp;lt;/v2:Locality&amp;gt;
+              &amp;lt;v2:Province&amp;gt;&amp;lt;v2:string&amp;gt;{$addressState}&amp;lt;/v2:string&amp;gt;&amp;lt;/v2:Province&amp;gt;
+              &amp;lt;v2:Country&amp;gt;&amp;lt;v2:string&amp;gt;{$addressCountry}&amp;lt;/v2:string&amp;gt;&amp;lt;/v2:Country&amp;gt;               
+            &amp;lt;/v2:Address&amp;gt;
+         &amp;lt;/v2:addresses&amp;gt;
+
+      &amp;lt;/v2:Process&amp;gt;
+   &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="StatusCode is a number that indicates the status of a request, including any error condition that prevents Informatica AddressDoctor Cloud from processing the request."
+                            name="StatusCode"
+                            property="StatusCode"
+                            type="int"/>
+                     <field description="Detail of the status Message"
+                            name="StatusMessage"
+                            property="StatusMessage"
+                            type="string"/>
+                     <field description="" name="StandardizedFullAddress" type="string">
+                        <xquery>{let $tempAddr := //*:ResultDataSet/*:ResultData[1]/*/*:AddressComplete/data()
+return replace($tempAddr,';',', ')
+}</xquery>
+                     </field>
+                     <field description="" name="StandardizedCity" type="string">
+                        <xquery>{fn:string-join(//*:ResultDataSet/*:ResultData[1]/*/*:Locality/*:string[1], ' ')}</xquery>
+                     </field>
+                     <field description="" name="StandardizedState" type="string">
+                        <xquery>{//*:ResultDataSet/*:ResultData[1]/*/*:Province/*:string[1]/text()}</xquery>
+                     </field>
+                     <field description=""
+                            name="StandardizedCountry"
+                            property="CountryISO3"
+                            type="string"/>
+                     <field description="" name="ResultScore" type="string">
+                        <xquery>{//*:ResultDataSet/*:ResultData[1]/*:ResultPercentage/data()}</xquery>
+                     </field>
+                     <field description=""
+                            name="StandardizedZip"
+                            property="PostalCode"
+                            type="string"/>
+                     <field description="" name="MailabilityScore" type="string">
+                        <xquery>{//*:ResultDataSet/*:ResultData[1]/*:MailabilityScore/data()}</xquery>
+                     </field>
+                     <field description="" name="TempOpStreet" type="string">
+                        <xquery>{fn:string-join(//*:ResultDataSet/*:ResultData[1]/*/*:DeliveryAddressLines/*:string[2], ' ')}</xquery>
+                     </field>
+                     <field description="" name="StandardizedStreet" type="string">
+                        <xquery>{if(fn:empty($TempOpStreet)) then fn:string-join(//*:ResultDataSet/*:ResultData[1]/*/*:DeliveryAddressLines/*:string[1], ' ') 
+else
+(
+fn:string-join(//*:ResultDataSet/*:ResultData[1]/*/*:DeliveryAddressLines/*:string[1], ' '),fn:string-join(',', ' '), fn:string-join(//*:ResultDataSet/*:ResultData[1]/*/*:DeliveryAddressLines/*:string[2], ' ')
+
+)}</xquery>
+                     </field>
+                  </output>
+               </action>
+            </actions>
+            <objects>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Envelope">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="Body" type="reference">
+                        <options>
+                           <option name="referenceTo">Body</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Body">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="ProcessResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessResponse</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="ProcessResponse">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="ProcessResult" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessResult</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="ProcessResult">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="StatusCode" type="int"/>
+                     <field name="StatusMessage" type="string"/>
+                     <field name="Results" type="reference">
+                        <options>
+                           <option name="referenceTo">Results</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Results">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="Result" type="reference">
+                        <options>
+                           <option name="referenceTo">Result</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Result">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="ProcessStatus" type="string"/>
+                     <field name="CountryISO3" type="string"/>
+                     <field name="ResultDataSet" type="reference">
+                        <options>
+                           <option name="referenceTo">ResultDataSet</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="ResultDataSet">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="ResultData" type="reference">
+                        <options>
+                           <option name="referenceTo">ResultData</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="ResultData">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="ResultNumber" type="int"/>
+                     <field name="MailabilityScore" type="int"/>
+                     <field name="ResultPercentage" type="double"/>
+                     <field name="ElementInputStatus" type="double"/>
+                     <field name="ElementResultStatus" type="string"/>
+                     <field name="ElementRelevance" type="double"/>
+                     <field name="ExtElementStatus" type="int"/>
+                     <field name="AddressResolutionCode" type="int"/>
+                     <field name="AddressType" type="string"/>
+                     <field name="LanguageISO3" type="string"/>
+                     <field name="Address" type="reference">
+                        <options>
+                           <option name="referenceTo">Address</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Address">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="SubBuilding" type="reference">
+                        <options>
+                           <option name="referenceTo">SubBuilding</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="Street" type="reference">
+                        <options>
+                           <option name="referenceTo">Street</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="HouseNumber" type="reference">
+                        <options>
+                           <option name="referenceTo">HouseNumber</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="Locality" type="reference">
+                        <options>
+                           <option name="referenceTo">Locality</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="PostalCode" type="reference">
+                        <options>
+                           <option name="referenceTo">PostalCode</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="Province" type="reference">
+                        <options>
+                           <option name="referenceTo">Province</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="Country" type="reference">
+                        <options>
+                           <option name="referenceTo">Country</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="DeliveryAddressLines" type="reference">
+                        <options>
+                           <option name="referenceTo">DeliveryAddressLines</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="CountrySpecificLocalityLine" type="reference">
+                        <options>
+                           <option name="referenceTo">CountrySpecificLocalityLine</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="FormattedAddress" type="reference">
+                        <options>
+                           <option name="referenceTo">FormattedAddress</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="AddressComplete" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="SubBuilding">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Street">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="HouseNumber">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="int"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Locality">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="PostalCode">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Province">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Country">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="DeliveryAddressLines">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="CountrySpecificLocalityLine">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="FormattedAddress">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="string" type="string"/>
+                  </detail>
+               </processObject>
+            </objects>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>6FGQ1aEIzNOePErkVPWiEj</types1:GUID>
+      <types1:DisplayName>Informatica AddressDoctor Cloud API-SPGlobal</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2020-07-02T20:40:37.002Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

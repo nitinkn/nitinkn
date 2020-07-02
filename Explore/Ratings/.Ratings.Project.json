@@ -1,0 +1,22 @@
+{
+  "objectInfo" : {
+    "id" : "5iGnl5QHo5qk6DUIwlrfw6",
+    "name" : "Ratings",
+    "type" : "Project",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : null,
+      "contextAttributes" : [ ],
+      "additionalInfo" : {
+        "description" : "Folder to hold all ratings only objects",
+        "contentType" : "Binary",
+        "documentState" : "COMPLETE"
+      }
+    }
+  },
+  "dataFileExtension" : "json",
+  "objectRefs" : [ ]
+}

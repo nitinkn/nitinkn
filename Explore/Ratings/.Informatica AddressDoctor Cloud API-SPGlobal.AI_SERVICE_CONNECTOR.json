@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "6FGQ1aEIzNOePErkVPWiEj",
+    "name" : "Informatica AddressDoctor Cloud API-SPGlobal",
+    "type" : "AI_SERVICE_CONNECTOR",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "Qk81V4AdypKwKBq-gt-1082173-2019-02-26T16:54:39.679Z::svc.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Custom Service Process to call out to Informatica Address Doctor Cloud",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
