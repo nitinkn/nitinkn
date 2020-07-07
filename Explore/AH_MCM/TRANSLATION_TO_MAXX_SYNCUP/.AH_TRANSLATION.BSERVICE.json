@@ -1,0 +1,50 @@
+{
+  "objectInfo" : {
+    "id" : "0kMLtTiMx31iiYJ1cmy0mX",
+    "name" : "AH_TRANSLATION",
+    "type" : "BSERVICE",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "0105GO27000000000006"
+      },
+      "contextAttributes" : [ {
+        "name" : "id",
+        "value" : "@1"
+      }, {
+        "name" : "0105GO28000000000008",
+        "value" : "0kMLtTiMx31iiYJ1cmy0mX@GetTranslatedItems"
+      } ],
+      "additionalInfo" : {
+        "description" : "This business service contains the swagger file to get data from Translation Portal(UAT env)",
+        "contentType" : "JSON",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "zip",
+  "objectRefs" : [ {
+    "id" : "9iRx2wFh1bDd5nGFBSAuAA",
+    "name" : "AH_TRANSLATION_GETcall",
+    "type" : "Connection",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "0105GO0B00000000002G"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : null,
+        "contentType" : "JSON",
+        "documentState" : "COMPLETE"
+      }
+    },
+    "path" : "/SYS"
+  } ]
+}

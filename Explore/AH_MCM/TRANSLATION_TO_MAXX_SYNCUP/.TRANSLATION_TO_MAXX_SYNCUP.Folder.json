@@ -1,0 +1,22 @@
+{
+  "objectInfo" : {
+    "id" : "3jsVXK1PEEoc6LP1Tvxdc6",
+    "name" : "TRANSLATION_TO_MAXX_SYNCUP",
+    "type" : "Folder",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : null,
+      "contextAttributes" : [ ],
+      "additionalInfo" : {
+        "description" : "This folder contains the Translation_to_MAXX_Syncup process related Mapping,Mapping Task and Taskflow",
+        "contentType" : "Binary",
+        "documentState" : "COMPLETE"
+      }
+    }
+  },
+  "dataFileExtension" : "json",
+  "objectRefs" : [ ]
+}

@@ -1,0 +1,22 @@
+{
+  "objectInfo" : {
+    "id" : "hkNvRppc3qOjpq2WB5JpmJ",
+    "name" : "AH_MCM",
+    "type" : "Project",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : null,
+      "contextAttributes" : [ ],
+      "additionalInfo" : {
+        "description" : "Folder created as part of IICS Migration from Windows to Linux",
+        "contentType" : "Binary",
+        "documentState" : "COMPLETE"
+      }
+    }
+  },
+  "dataFileExtension" : "json",
+  "objectRefs" : [ ]
+}

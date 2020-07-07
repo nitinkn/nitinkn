@@ -1,0 +1,225 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>HYOuVGTiPZx1Xmg-gt-5129141-2020-06-04T17:12:53.546Z::tf.xml</types1:EntryId>
+      <types1:Name>Translation_to_MAXX_Sync_Issue_support</types1:Name>
+      <types1:MimeType>application/xml+taskflow</types1:MimeType>
+      <types1:Description>This task is designed to fetch data from Translation portal using Web service and perform Insert/Update to MAXX based on business logic.
+Custom Label Non-existence report is send as an attachment along with the Success Rows to the customer using Notification Task</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>nitinkn@suborg.com</types1:CreatedBy>
+      <types1:CreationDate>2020-06-04T17:12:54Z</types1:CreationDate>
+      <types1:ModifiedBy>nitinkn@suborg.com</types1:ModifiedBy>
+      <types1:ModificationDate>2020-06-04T17:53:32Z</types1:ModificationDate>
+      <types1:PublicationStatus>out-of-date</types1:PublicationStatus>
+      <types1:PublishedBy>nitinkn@suborg.com</types1:PublishedBy>
+      <types1:PublicationDate>2020-06-04T17:53:14Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/tf.Translation_to_MAXX_Sync_Issue_support/Translation_to_MAXX_Sync_Issue_support.tf.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <taskflow xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                   xmlns:list="urn:activevos:spi:list:functions"
+                   displayName="Translation_to_MAXX_Sync_Issue_support"
+                   name="Translation_to_MAXX_Sync_Issue_support"
+                   overrideAPIName="true">
+            <appliesTo/>
+            <description>This task is designed to fetch data from Translation portal using Web service and perform Insert/Update to MAXX based on business logic.
+Custom Label Non-existence report is send as an attachment along with the Success Rows to the customer using Notification Task</description>
+            <tags/>
+            <generator>Informatica Process Designer 11</generator>
+            <tempFields>
+               <field description="" name="trans_to_maxx" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:Translation-to-MAXX-Sync</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <rest/>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="j3wf4qlz" targetId="kagud36v"/>
+               </start>
+               <eventContainer id="kagud36v">
+                  <service id="j3wf4qly">
+                     <title>trans_to_maxx</title>
+                     <serviceName>ICSExecuteDataTask</serviceName>
+                     <serviceGUID/>
+                     <serviceInput>
+                        <parameter name="Wait for Task to Complete" source="constant" updatable="true">true</parameter>
+                        <parameter name="Max Wait" source="constant" updatable="true">86400</parameter>
+                        <parameter name="Task Name" source="constant" updatable="true">Translation_to_MAXX_Sync</parameter>
+                        <parameter name="GUID" source="constant" updatable="true">2j58Pf827ESjB7JlYEdYSw</parameter>
+                        <parameter name="Task Type" source="constant" updatable="true">MCT</parameter>
+                        <parameter name="Has Inout Parameters" source="constant" updatable="true">false</parameter>
+                        <parameter name="taskField" source="nested">
+                           <operation source="field" to="Translation-to-MAXX-Sync">temp.trans_to_maxx</operation>
+                        </parameter>
+                     </serviceInput>
+                     <serviceOutput>
+                        <operation source="field" to="temp.trans_to_maxx/output/Object_Name">Object Name</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Run_Id">Run Id</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Log_Id">Log Id</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Task_Id">Task Id</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Task_Status">Task Status</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Success_Source_Rows">Success Source Rows</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Failed_Source_Rows">Failed Source Rows</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Success_Target_Rows">Success Target Rows</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Failed_Target_Rows">Failed Target Rows</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Start_Time">Start Time</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/End_Time">End Time</operation>
+                        <operation source="field" to="temp.trans_to_maxx/output/Error_Message">Error Message</operation>
+                     </serviceOutput>
+                  </service>
+                  <link id="kapkbed9" targetId="kapkbed8"/>
+                  <events>
+                     <catch faultField="temp.trans_to_maxx/fault"
+                            id="kagud36t"
+                            interrupting="true"
+                            name="error"/>
+                     <catch faultField="temp.trans_to_maxx/fault"
+                            id="kagud36u"
+                            interrupting="true"
+                            name="warning"/>
+                  </events>
+               </eventContainer>
+               <container id="kapkbed8" type="exclusive">
+                  <title>dec</title>
+                  <flow id="kapkbedc">
+                     <service id="kapkbedl">
+                        <title>test1</title>
+                        <serviceName>emailNotificationService</serviceName>
+                        <serviceGUID/>
+                        <serviceInput>
+                           <parameter name="Email To" source="constant">ajith.kumar.veerappa@merck.com,anuprasad.narendran2@merck.com</parameter>
+                           <parameter name="Email Cc" source="constant">ganesan.ayyappan@merck.com,ajith.kumar.veerappa@merck.com</parameter>
+                           <parameter name="Email Subject" source="constant">JOB STATUS : SUCCESS  "{$temp.s_translation_to_maxx_sync[1]/output[1]/Object_Name}"</parameter>
+                           <parameter name="Email Content Type" source="constant">html</parameter>
+                           <parameter name="Email Body" source="constant">&lt;p&gt;Hi User,&lt;/p&gt;
+&lt;p&gt;Translation Portal to MAXX Syncup is now completed successfully.&lt;/p&gt;
+&lt;table style="border: 10px solid Grey;"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;" colspan="3"&gt;&lt;center&gt;&lt;strong&gt;&lt;span style="color: purple;"&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/Object_Name} REPORT&lt;/span&gt;&lt;/strong&gt;&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;PROCESS START TIME&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/Start_Time}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;PROCESS END TIME&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/End_Time}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;RECORDS PROCESSED&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/Success_Target_Rows}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;STATUS&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;strong&gt;&lt;span style="color: green;"&gt;SUCCESS&lt;/span&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;INSERT RECORDS REPORT&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;a title="Target Directory" href="http://awsus1icsd02.merck.com/AHMCM/TgtFiles/AH_TRANSLATION/"&gt;&lt;strong&gt;Translations_to_Maxx_Sync_Inserts.csv&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;UPDATE RECORDS REPORT&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;a title="Target Directory" href="http://awsus1icsd02.merck.com/AHMCM/TgtFiles/AH_TRANSLATION/"&gt;&lt;strong&gt;Translations_to_Maxx_Sync_Updates.csv&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;CUSTOMLABEL UNAVAILABLE REPORT&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;" colspan="2"&gt;&lt;a title="Target Directory" href="http://awsus1icsd02.merck.com/AHMCM/TgtFiles/AH_TRANSLATION/"&gt;&lt;strong&gt;Translations_to_Maxx_Sync_Missing_CustomLabel.csv&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;span style="text-decoration: underline; color: #993300; font-size: 10pt;"&gt;&lt;strong&gt;NOTE&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This notification holds the latest run reports as part of Translation to MAXX syncup process.&lt;br&gt;For all the Historical reports, please click here &lt;a title="ARCHIVE" href="http://awsus1icsd02.merck.com/AHMCM/ARCHIVE/AH_TRANSLATION/"&gt;Reports Archive&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is an system generated email notification from MAXX Data Team. Please DO NOT hit REPLY on this message. Contact "MAXX_DATA_TEAM@NorthAmerica.msx.merck.com" if you have any questions.&lt;/p&gt;</parameter>
+                        </serviceInput>
+                        <serviceOutput/>
+                     </service>
+                     <link id="kapkbedd" targetId="kapkbed8" type="containerLink"/>
+                  </flow>
+                  <flow id="kapkbedf">
+                     <service id="kapkbee4">
+                        <title>test2</title>
+                        <serviceName>emailNotificationService</serviceName>
+                        <serviceGUID/>
+                        <serviceInput>
+                           <parameter name="Email To" source="constant">ajith.kumar.veerappa@merck.com,anuprasad.narendran2@merck.com</parameter>
+                           <parameter name="Email Cc" source="constant">ganesan.ayyappan@merck.com,ajith.kumar.veerappa@merck.com</parameter>
+                           <parameter name="Email Subject" source="constant">"{$temp.s_translation_to_maxx_sync[1]/output[1]/Object_Name}  JOB STATUS : FAILED {"$temp.s_translation_to_maxx_sync[1]/output[1]/Object_Name}"</parameter>
+                           <parameter name="Email Content Type" source="constant">html</parameter>
+                           <parameter name="Email Body" source="constant">&lt;p&gt;Hi Team,&lt;/p&gt;
+&lt;p&gt;Translation Portal to MAXX Syncup Process is Failed.&lt;/p&gt;
+&lt;table style="border: 10px solid Grey;"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;" colspan="3"&gt;&lt;center&gt;&lt;strong&gt;&lt;span style="color: blue;"&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/Object_Name} REPORT&lt;/span&gt;&lt;/strong&gt;&lt;/center&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;PROCESS START TIME&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/Start_Time}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;PROCESS END TIME&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/End_Time}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;FAILURE REASON&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/fault[1]/reason}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;STATUS&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 2px solid black;"&gt;&lt;strong&gt;{$temp.s_translation_to_maxx_sync[1]/output[1]/Task_Status}&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;This is an system generated email notification from MAXX Data Team. Please DO NOT hit REPLY on this message.&lt;/p&gt;
+&lt;p&gt;Contact "MAXX_DATA_TEAM@NorthAmerica.msx.merck.com" if you have any questions.&lt;/p&gt;</parameter>
+                        </serviceInput>
+                        <serviceOutput/>
+                     </service>
+                     <link id="kapkbedg" targetId="kapkbed8" type="containerLink"/>
+                  </flow>
+                  <link id="kapkbedb" targetId="kapkbedc" type="containerLink">
+                     <condition source="formula">
+                        <function name="string-equals">
+                           <arg name="left">{$temp.trans_to_maxx[1]/output[1]/Task_Status}</arg>
+                           <arg name="right">1</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="kapkbede" targetId="kapkbedf" type="containerLink"/>
+                  <link id="kapkbedk" targetId="c"/>
+               </container>
+               <end id="c"/>
+            </flow>
+            <dependencies>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              displayName="Translation-to-MAXX-Sync"
+                              isByCopy="true"
+                              name="Translation-to-MAXX-Sync">
+                  <description/>
+                  <tags/>
+                  <detail>
+                     <field label="Output Parameters" name="output" type="reference"/>
+                     <field label="Fault" name="fault" type="reference"/>
+                  </detail>
+               </processObject>
+            </dependencies>
+         </taskflow>
+      </types1:Entry>
+      <types1:GUID>1unXS3ZuEvscN6HP3bM3WX</types1:GUID>
+      <types1:DisplayName>Translation_to_MAXX_Sync_Issue_support</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2020-07-07T22:39:55.359Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

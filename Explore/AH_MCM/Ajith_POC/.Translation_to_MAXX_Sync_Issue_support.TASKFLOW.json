@@ -1,0 +1,47 @@
+{
+  "objectInfo" : {
+    "id" : "1unXS3ZuEvscN6HP3bM3WX",
+    "name" : "Translation_to_MAXX_Sync_Issue_support",
+    "type" : "TASKFLOW",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "HYOuVGTiPZx1Xmg-gt-5129141-2020-06-04T17:12:53.546Z::tf.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "This task is designed to fetch data from Translation portal using Web service and perform Insert/Update to MAXX based on business logic.\nCustom Label Non-existence report is send as an attachment along with the Success Rows to the customer using Notification Task",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "2j58Pf827ESjB7JlYEdYSw",
+    "name" : "Translation_to_MAXX_Sync",
+    "type" : "MTT",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 0,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "0105GO0Z00000000004P"
+      },
+      "contextAttributes" : [ {
+        "name" : "id",
+        "value" : "@1"
+      } ],
+      "additionalInfo" : {
+        "description" : "This mapping task is designed to fetch data from Translation portal using Web service and perform Insert/Update to MAXX based on business logic.",
+        "contentType" : "JSON",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/AH_MCM/TRANSLATION_TO_MAXX_SYNCUP"
+  } ]
+}
