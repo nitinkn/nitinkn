@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "lhNvqTnjyYgbTVUrSrFveS",
+    "name" : "kn_check_in_test",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "eD6HKoJBUhtycot-gt-6876776-2020-07-13T22:21:24.069Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
