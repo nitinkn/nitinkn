@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "3qRpV00kO6fjTwn02X0IIa",
+    "name" : "kn-dummy-wait",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "03puoJ49ARJi4tc-gt-4997759-2021-05-07T22:37:54.984Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
