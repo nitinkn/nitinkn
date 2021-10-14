@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "6g7DlwQ4fW1g6xdeoc6CyG",
+    "name" : "TEST DAS",
+    "type" : "GUIDE",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "BSlCCKpNz6HKoJB-gt-35964155-2021-08-23T22:10:24.444Z::gt.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Guide To Run various data acess Service Wrapper test",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "0Y2a0rhxm3zdWDQXcAvxSI",
+    "name" : "Show Process Links",
+    "type" : "GUIDE",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "SrZMSPfXBiVGkSS-gt-41986424-2021-08-23T22:10:23.716Z::gt.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Guide Generates and displays process links for specified environment name and process id. Make sure that the ae:base-uri uri is defined as urn mapping on all agents and Cloud server. This URN must point to corresponding Cloud instance pod URL such as https://na1.ai.dm-us.informaticacloud.com",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/DAS/Tests"
+  } ]
+}

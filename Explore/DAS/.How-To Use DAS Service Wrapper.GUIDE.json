@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "15xARsU5bKDbx4wGWudSy7",
+    "name" : "How-To Use DAS Service Wrapper",
+    "type" : "GUIDE",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "k22z2YNmumf6S3w-gt-20686132-2021-08-23T22:10:23.169Z::gt.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Guide Describes How to use Data Access Service Wrapper",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}

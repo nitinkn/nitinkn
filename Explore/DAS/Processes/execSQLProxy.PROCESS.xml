@@ -1,0 +1,103 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>160S24FsWTzIf6r-gt-41986524-2021-08-23T22:10:23.848Z::pd.xml</types1:EntryId>
+      <types1:Name>execSQLProxy</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>This service allows to Access the execSQL DAS Services running on the Secure Agent from the cloud process or the guide...</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:kn_win_us</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>nitinkn@suborg.com</types1:CreatedBy>
+      <types1:CreationDate>2021-08-23T22:10:24Z</types1:CreationDate>
+      <types1:ModifiedBy>nitinkn@suborg.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-09-02T21:29:14Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>nitinkn@suborg.com</types1:PublishedBy>
+      <types1:PublicationDate>2021-09-02T21:29:24Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.execSQLProxy/execSQLProxy.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="execSQLProxy"
+                  name="execSQLProxy"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>This service allows to Access the execSQL DAS Services running on the Secure Agent from the cloud process or the guide...</description>
+            <tags>.agent:kn_win_us</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="dataAccessRequest" type="reference">
+                  <options>
+                     <option name="referenceTo">DataAccessService:tDataAccessRequest</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="dataAccessResponse" type="reference">
+                  <options>
+                     <option name="referenceTo">DataAccessService:tResponse</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </field>
+            </output>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <targetLocation>kn_win_us</targetLocation>
+               <rest/>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="link1" targetId="iveac80q"/>
+               </start>
+               <eventContainer id="iveac80q">
+                  <service id="c">
+                     <title>execSQL</title>
+                     <serviceName>execSQL</serviceName>
+                     <serviceGUID/>
+                     <serviceInput>
+                        <parameter name="dataAccessRequest" source="field">input.dataAccessRequest</parameter>
+                     </serviceInput>
+                  </service>
+                  <flow id="iveac80t">
+                     <assignment id="ivijvknt">
+                        <title>Assignment to dataAccessResponse</title>
+                        <operation source="field" to="output.dataAccessResponse">output.dataAccessResponse</operation>
+                     </assignment>
+                     <link id="iveac80u" targetId="iveac80q" type="containerLink"/>
+                  </flow>
+                  <flow id="iveac80x">
+                     <throw id="iveac81m">
+                        <title>fault</title>
+                        <throwInput>
+                           <parameter name="code" source="field" updatable="true">output.faultInfo[1]/code</parameter>
+                           <parameter name="detail" source="field" updatable="true">output.faultInfo[1]/detail</parameter>
+                           <parameter name="reason" source="field" updatable="true">output.faultInfo[1]/reason</parameter>
+                        </throwInput>
+                     </throw>
+                  </flow>
+                  <link id="iveac80r" targetId="iveac80t" type="containerLink"/>
+                  <link id="ivijvknw" targetId="d"/>
+                  <events>
+                     <catch faultField="faultInfo" id="iveac80o" interrupting="true">
+                        <link id="iveac80v" targetId="iveac80x" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
+               <end id="d"/>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>k1qGyVxsQCrjwoN7wnLOYw</types1:GUID>
+      <types1:DisplayName>execSQLProxy</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2021-10-14T17:51:19.983Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

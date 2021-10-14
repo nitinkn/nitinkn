@@ -1,0 +1,94 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>hHAHufWC64Ky2uI-gt-36186683-2021-08-23T23:02:29.124Z::pd.xml</types1:EntryId>
+      <types1:Name>Test_DAS_5DS</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>gf</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.anonymous</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>nitinkn@suborg.com</types1:CreatedBy>
+      <types1:CreationDate>2021-08-23T23:02:29Z</types1:CreationDate>
+      <types1:ModifiedBy>nitinkn@suborg.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-08-24T20:27:51Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>nitinkn@suborg.com</types1:PublishedBy>
+      <types1:PublicationDate>2021-08-24T20:27:56Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.Test_DAS_5DS/Test_DAS_5DS.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="Test_DAS_5DS"
+                  name="Test_DAS_5DS"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>gf</description>
+            <tags>.anonymous</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <output>
+               <field description="" name="untitled1" type="reference">
+                  <options>
+                     <option name="referenceTo">$po:$any</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="temp_DAS_req" type="reference">
+                  <options>
+                     <option name="referenceTo">DataAccessService:tDataAccessRequest</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">41v7v1ZDhZEkZVVt3CGVST</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <rest>
+                  <allowAnonymousAccess/>
+                  <wholePayload outputWholePayload="true"/>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="ksp8ko0y" targetId="ksp8ko0x"/>
+               </start>
+               <assignment id="ksp8ko0x">
+                  <title>Assignment to temp.temp_DAS_req[1]/dataSource, temp.temp_DAS_req[1]/sqlStatement[1]/statement</title>
+                  <operation source="constant" to="temp.temp_DAS_req[1]/dataSource">DS1</operation>
+                  <operation source="constant" to="temp.temp_DAS_req[1]/sqlStatement[1]/statement">Select 'abc' as col from dual</operation>
+                  <link id="ksp8ko0z" targetId="ksp8ko0p"/>
+               </assignment>
+               <assignment id="ksp8ko15">
+                  <title>Assignment to untitled1</title>
+                  <operation source="formula" to="output.untitled1">
+                     <expression language="XQuery">$output.dataAccessResponse[1]/row </expression>
+                  </operation>
+                  <link id="ksp8ko17" targetId="c"/>
+               </assignment>
+               <service id="ksp8ko0p">
+                  <title>execSQLProxy</title>
+                  <serviceName>execSQLProxy</serviceName>
+                  <serviceGUID>k1qGyVxsQCrjwoN7wnLOYw</serviceGUID>
+                  <serviceInput>
+                     <parameter name="dataAccessRequest" source="field" updatable="true">temp.temp_DAS_req</parameter>
+                  </serviceInput>
+                  <link id="ksp8ko16" targetId="ksp8ko15"/>
+               </service>
+               <end id="c"/>
+            </flow>
+         </process>
+      </types1:Entry>
+      <types1:GUID>fi544JzZ2gybZUBjUxv38X</types1:GUID>
+      <types1:DisplayName>Test_DAS_5DS</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2021-10-14T17:51:20.318Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
