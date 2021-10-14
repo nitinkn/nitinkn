@@ -12,7 +12,8 @@
       <types1:ProcessGroup/>
       <types1:CreatedBy>nitinkn@suborg.com</types1:CreatedBy>
       <types1:CreationDate>2021-08-23T22:10:25Z</types1:CreationDate>
-      <types1:ModifiedBy/>
+      <types1:ModifiedBy>nitinkn@suborg.com</types1:ModifiedBy>
+      <types1:ModificationDate>2021-10-14T18:08:00Z</types1:ModificationDate>
       <types1:PublicationStatus>unpublished</types1:PublicationStatus>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
@@ -697,5 +698,5 @@ return string-join($messageParts, " ")
       <types1:GUID>1MptO0VHRkOdeA7FBuNpK2</types1:GUID>
       <types1:DisplayName>TEST DAS</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2021-10-14T18:03:55.169Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2021-10-14T18:11:44.695Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>

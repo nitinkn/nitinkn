@@ -1,19 +1,19 @@
 {
   "objectInfo" : {
-    "id" : "5bOCfoxnIf3erHVbpE55mi",
-    "name" : "DataAccessService",
-    "type" : "AI_SERVICE_CONNECTOR",
+    "id" : "e3Gq5PykUYYl4hwwEcOxGT",
+    "name" : "ProcessObject1",
+    "type" : "PROCESS_OBJECT",
     "metadata" : {
       "modelVersion" : {
         "major" : 1,
         "minor" : 0
       },
       "repoInfo" : {
-        "repoHandle" : "4OurMZgpDqotxGo-gt-41986539-2021-08-23T22:10:23.898Z::svc.xml"
+        "repoHandle" : "q2ME9paabdqpw0V-gt-4477440-2021-10-14T18:10:32.262Z::po.xml"
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "DO NOT USE THIS SERVICE DIRECTLY is defined only to provide metadata defintions for Automated Steps execSQL and execMultiSQL.",
+        "description" : "",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }

@@ -13,8 +13,8 @@
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "DO NOT USE THIS SERVICE DIRECTLY is defined only to provide metadata defintions for Automated Steps execSQL and execMultiSQL.test",
-        "contentType" : "application/json; charset=utf-8",
+        "description" : "DO NOT USE THIS SERVICE DIRECTLY is defined only to provide metadata defintions for Automated Steps execSQL and execMultiSQL",
+        "contentType" : "Binary",
         "documentState" : "VALID"
       }
     }
@@ -34,7 +34,7 @@
       },
       "contextAttributes" : null,
       "additionalInfo" : {
-        "description" : "DO NOT USE THIS SERVICE DIRECTLY is defined only to provide metadata defintions for Automated Steps execSQL and execMultiSQL.test",
+        "description" : "DO NOT USE THIS SERVICE DIRECTLY is defined only to provide metadata defintions for Automated Steps execSQL and execMultiSQL.",
         "contentType" : "application/json; charset=utf-8",
         "documentState" : "VALID"
       }
