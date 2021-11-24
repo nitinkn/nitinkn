@@ -1,0 +1,2347 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>clBghNf4TsrT2ht-gt-3465309-2020-07-23T22:18:53.043Z::svc.xml</types1:EntryId>
+      <types1:Name>AgentAdmin</types1:Name>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>nitinkn@suborg.com</types1:CreatedBy>
+      <types1:CreationDate>2020-07-23T22:18:53Z</types1:CreationDate>
+      <types1:ModifiedBy>nitinkn@suborg.com</types1:ModifiedBy>
+      <types1:ModificationDate>2020-07-23T22:25:34Z</types1:ModificationDate>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="false"
+                            debug="false"
+                            displayName="AgentAdmin"
+                            label=""
+                            name="AgentAdmin"
+                            uuid="19fd5217-7e9f-4aa4-92d3-86544d118484">
+            <description/>
+            <tags/>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"/>
+            <actions>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       isAbstract="true"
+                       label="BaseAction"
+                       maxRedirects="100"
+                       name="BaseAction"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username>sn</username>
+                           <password/>
+                           <isExpressionInPassword>false</isExpressionInPassword>
+                        </authentication>
+                        <httpHeaders>
+                           <header name="Content-Type">text/xml; charset=utf-8</header>
+                        </httpHeaders>
+                        <body/>
+                     </restSimpleBinding>
+                  </binding>
+                  <output/>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="terminateProcess"
+                       maxRedirects="100"
+                       name="terminateProcess"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="terminateProcess"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:terminateProcess xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$terminateProcess/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:terminateProcess&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="terminateProcessResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='terminateProcessResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="deleteProcess"
+                       maxRedirects="100"
+                       name="deleteProcess"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="deleteProcess"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:deleteProcess xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$deleteProcess/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:deleteProcess&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="deleteProcessResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='deleteProcessResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="deleteProcesses"
+                       maxRedirects="100"
+                       name="deleteProcesses"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="deleteProcesses"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesProcessListingFilter</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body/&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output/>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="suspendProcess"
+                       maxRedirects="100"
+                       name="suspendProcess"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="suspendProcess"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:suspendProcess xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$suspendProcess/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:suspendProcess&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="suspendProcessResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='suspendProcessResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="resumeProcess"
+                       maxRedirects="100"
+                       name="resumeProcess"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="resumeProcess"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:resumeProcess xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$resumeProcess/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:resumeProcess&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="resumeProcessResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='resumeProcessResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="resumeProcessWithFaultRetry"
+                       maxRedirects="100"
+                       name="resumeProcessWithFaultRetry"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="resumeProcessWithFaultRetry"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:resumeProcessWithFaultRetry xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$resumeProcessWithFaultRetry/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:resumeProcessWithFaultRetry&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            name="resumeProcessWithFaultRetryResponse"
+                            type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='resumeProcessWithFaultRetryResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="retryActivity"
+                       maxRedirects="100"
+                       name="retryActivity"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="retryActivity"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesActivityAction</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:retryActivity xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$retryActivity/processId/text()}&lt;/ns:processId&gt;
+            &lt;ns:location&gt;{$retryActivity/location/text()}&lt;/ns:location&gt;
+        &lt;/ns:retryActivity&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="retryActivityResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='retryActivityResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="completeActivity"
+                       maxRedirects="100"
+                       name="completeActivity"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="completeActivity"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesActivityAction</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:completeActivity xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$completeActivity/processId/text()}&lt;/ns:processId&gt;
+            &lt;ns:location&gt;{$completeActivity/location/text()}&lt;/ns:location&gt;
+        &lt;/ns:completeActivity&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="completeActivityResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='completeActivityResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="executeActivity"
+                       maxRedirects="100"
+                       name="executeActivity"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="executeActivity"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesActivityAction</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:executeActivity xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$executeActivity/processId/text()}&lt;/ns:processId&gt;
+            &lt;ns:location&gt;{$executeActivity/location/text()}&lt;/ns:location&gt;
+        &lt;/ns:executeActivity&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="executeActivityResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='executeActivityResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getApiVersion"
+                       maxRedirects="100"
+                       name="getApiVersion"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getApiVersion"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getApiVersion xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"/&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getApiVersionResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">GetApiVersionResponse_AT</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getApiVersionResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessList"
+                       maxRedirects="100"
+                       name="getProcessList"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <attribute inherit="overwrite" name="url" type="url"/>
+                        <section type="authentication">
+                           <attribute inherit="overwrite" name="username" type="parameter"/>
+                           <attribute inherit="overwrite" name="password" type="parameter"/>
+                           <attribute name="isExpressionInPassword" type="parameter"/>
+                        </section>
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getProcessList"
+                                required="false"
+                                testWith="&lt;getProcessListInput&gt;&#xA;         &lt;filter&gt;&#xA;            &lt;/filter&gt;&#xA;      &lt;/getProcessListInput&gt;"
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesGetProcessList</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://usw1pf0tfprj:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username>vc@gmail.com</username>
+                           <password/>
+                           <isExpressionInPassword>false</isExpressionInPassword>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getProcessListInput xmlns:ns="http://schemas.active-endpoints.com/activebpeladmin/2007/01/activebpeladmin.xsd"&gt;
+            { 
+                if(boolean($getProcessList/filter)) then
+                    &lt;ns:filter&gt;
+                        &lt;ns1:listStart xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getProcessList/filter/listStart/text()}&lt;/ns1:listStart&gt;
+                        &lt;ns1:maxReturn xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getProcessList/filter/maxReturn/text()}&lt;/ns1:maxReturn&gt;
+                        {
+                            for $processState in $getProcessList/filter/processState
+                            return
+                            &lt;ns:processState&gt;{$processState/text()}&lt;/ns:processState&gt;
+                        }
+                        &lt;ns:processName namespace="{$getProcessList/filter/processName/namespace/text()}"&gt;{$getProcessList/filter/processName/text()}&lt;/ns:processName&gt;
+                        &lt;ns:created&gt;
+                            &lt;ns1:on xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getProcessList/filter/created/on/text()}&lt;/ns1:on&gt;
+                            &lt;ns1:between xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"
+                            fromDate="{$getProcessList/filter/created/between/fromDate/text()}"
+                            optional="true"
+                            toDate="{$getProcessList/filter/created/between/toDate/text()}"/&gt;
+                            &lt;/ns:created&gt;
+                            &lt;ns:completed&gt;
+                                &lt;ns1:on xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getProcessList/filter/completed/on/text()}&lt;/ns1:on&gt;
+                                &lt;ns1:between xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"
+                            fromDate="{$getProcessList/filter/completed/between/fromDate/text()}"
+                            optional="true"
+                            toDate="{$getProcessList/filter/completed/between/toDate/text()}"/&gt;
+                                &lt;/ns:completed&gt;
+                                &lt;ns:processGroup&gt;{$getProcessList/filter/processGroup/text()}&lt;/ns:processGroup&gt;
+                                &lt;ns:hideSystem&gt;{$getProcessList/filter/hideSystem/text()}&lt;/ns:hideSystem&gt;
+                                &lt;ns:advancedQuery&gt;{$getProcessList/filter/advancedQuery/text()}&lt;/ns:advancedQuery&gt;
+                                &lt;ns:hidePublicTenant&gt;{$getProcessList/filter/hidePublicTenant/text()}&lt;/ns:hidePublicTenant&gt;
+                            &lt;/ns:filter&gt;
+                        else 
+                        if(boolean($getProcessList/processIdFilter)) then
+                            &lt;ns:processIdFilter&gt;
+                                {
+                                    for $processId in $getProcessList/processIdFilter/processId
+                                    return
+                                    &lt;ns:processId&gt;{$processId/text()}&lt;/ns:processId&gt;
+                                }
+                            &lt;/ns:processIdFilter&gt;
+                        else
+                        ()
+                    }
+                &lt;/ns:getProcessListInput&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getProcessListResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesProcessListingResult</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getProcessListResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessCount"
+                       maxRedirects="100"
+                       name="getProcessCount"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getProcessCount"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesProcessListingFilter</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body/&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output/>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getDeployedProcessList"
+                       maxRedirects="100"
+                       name="getDeployedProcessList"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getDeployedProcessList"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesVoidType</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getDeployedProcessList xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"/&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            name="getDeployedProcessListResponse"
+                            type="reference">
+                        <options>
+                           <option name="referenceTo">AesDeployedProcessListingResult</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getDeployedProcessListResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessState"
+                       maxRedirects="100"
+                       name="getProcessState"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getProcessState"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">GetProcessState_AT</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getProcessState xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$getProcessState/processId/text()}&lt;/ns:processId&gt;
+            &lt;ns:eventCounter&gt;{$getProcessState/eventCounter/text()}&lt;/ns:eventCounter&gt;
+            &lt;ns:eventIndex&gt;{$getProcessState/eventIndex/text()}&lt;/ns:eventIndex&gt;
+        &lt;/ns:getProcessState&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getProcessStateResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">GetProcessStateResponse_AT</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getProcessStateResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessLog"
+                       maxRedirects="100"
+                       name="getProcessLog"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getProcessLog"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getProcessLog xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$getProcessLog/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:getProcessLog&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getProcessLogResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">GetProcessLogResponse_AT</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getProcessLogResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getFullProcessLog"
+                       maxRedirects="100"
+                       name="getFullProcessLog"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getFullProcessLog"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithProcessId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getFullProcessLog xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$getFullProcessLog/processId/text()}&lt;/ns:processId&gt;
+        &lt;/ns:getFullProcessLog&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getFullProcessLogResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">GetFullProcessLogResponse_AT</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getFullProcessLogResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessAttachment"
+                       maxRedirects="100"
+                       name="getProcessAttachment"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getProcessAttachment"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesRequestWithAttachmentId</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getProcessAttachment xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:attachmentId&gt;{$getProcessAttachment/attachmentId/text()}&lt;/ns:attachmentId&gt;
+        &lt;/ns:getProcessAttachment&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getProcessAttachmentResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">GetProcessAttachmentResponse_AT</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getProcessAttachmentResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getMessageReceiverList"
+                       maxRedirects="100"
+                       name="getMessageReceiverList"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getMessageReceiverList"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesMessageReceiverListingFilter</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getMessageReceiverList xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:listStart xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getMessageReceiverList/listStart/text()}&lt;/ns:listStart&gt;
+            &lt;ns:maxReturn xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getMessageReceiverList/maxReturn/text()}&lt;/ns:maxReturn&gt;
+            &lt;ns1:processId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getMessageReceiverList/processId/text()}&lt;/ns1:processId&gt;
+            &lt;ns1:partnerLinkName xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getMessageReceiverList/partnerLinkName/text()}&lt;/ns1:partnerLinkName&gt;
+            &lt;ns1:portType xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"
+                       namespace="{$getMessageReceiverList/portType/namespace/text()}"&gt;{$getMessageReceiverList/portType/text()}&lt;/ns1:portType&gt;
+                &lt;ns1:operation xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getMessageReceiverList/operation/text()}&lt;/ns1:operation&gt;
+            &lt;/ns:getMessageReceiverList&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            name="getMessageReceiverListResponse"
+                            type="reference">
+                        <options>
+                           <option name="referenceTo">AesMessageReceiverListingResult</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getMessageReceiverListResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getAlarmList"
+                       maxRedirects="100"
+                       name="getAlarmList"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getAlarmList"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesAlarmListingFilter</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body/&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getAlarmListResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesAlarmListingResult</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getAlarmListResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessEventData"
+                       maxRedirects="100"
+                       name="getProcessEventData"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getProcessEventData"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesGetProcessEventData</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getProcessEventData xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$getProcessEventData/processId/text()}&lt;/ns:processId&gt;
+            &lt;ns:version&gt;{$getProcessEventData/version/text()}&lt;/ns:version&gt;
+        &lt;/ns:getProcessEventData&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getProcessEventDataResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesXmlContent</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getProcessEventDataResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getLogEvents"
+                       maxRedirects="100"
+                       name="getLogEvents"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getLogEvents"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesLogEventFilter</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getLogEvents xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:listStart xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getLogEvents/listStart/text()}&lt;/ns:listStart&gt;
+            &lt;ns:maxReturn xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getLogEvents/maxReturn/text()}&lt;/ns:maxReturn&gt;
+            &lt;ns1:processId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/processId/text()}&lt;/ns1:processId&gt;
+            &lt;ns1:counterId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/counterId/text()}&lt;/ns1:counterId&gt;
+            &lt;ns1:query xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/query/text()}&lt;/ns1:query&gt;
+            &lt;ns1:filterType xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/filterType/text()}&lt;/ns1:filterType&gt;
+            &lt;ns1:pagingOffset xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/pagingOffset/text()}&lt;/ns1:pagingOffset&gt;
+            &lt;ns1:instanceLocationId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/instanceLocationId/text()}&lt;/ns1:instanceLocationId&gt;
+            &lt;ns1:tenantContextId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEvents/tenantContextId/text()}&lt;/ns1:tenantContextId&gt;
+        &lt;/ns:getLogEvents&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getLogEventsResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesLogEventListingResult</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getLogEventsResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getLogEventCount"
+                       maxRedirects="100"
+                       name="getLogEventCount"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getLogEventCount"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesLogEventFilter</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getLogEventCount xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:listStart xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getLogEventCount/listStart/text()}&lt;/ns:listStart&gt;
+            &lt;ns:maxReturn xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/05/EngineAPITypes.xsd"&gt;{$getLogEventCount/maxReturn/text()}&lt;/ns:maxReturn&gt;
+            &lt;ns1:processId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/processId/text()}&lt;/ns1:processId&gt;
+            &lt;ns1:counterId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/counterId/text()}&lt;/ns1:counterId&gt;
+            &lt;ns1:query xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/query/text()}&lt;/ns1:query&gt;
+            &lt;ns1:filterType xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/filterType/text()}&lt;/ns1:filterType&gt;
+            &lt;ns1:pagingOffset xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/pagingOffset/text()}&lt;/ns1:pagingOffset&gt;
+            &lt;ns1:instanceLocationId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/instanceLocationId/text()}&lt;/ns1:instanceLocationId&gt;
+            &lt;ns1:tenantContextId xmlns:ns1="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getLogEventCount/tenantContextId/text()}&lt;/ns1:tenantContextId&gt;
+        &lt;/ns:getLogEventCount&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output/>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getVariable"
+                       maxRedirects="100"
+                       name="getVariable"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getVariable"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">AesGetVariable</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getVariable xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;
+            &lt;ns:processId&gt;{$getVariable/processId/text()}&lt;/ns:processId&gt;
+            &lt;ns:variablePath&gt;{$getVariable/variablePath/text()}&lt;/ns:variablePath&gt;
+        &lt;/ns:getVariable&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getVariableResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesXmlContent</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getVariableResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getCoordinator"
+                       maxRedirects="100"
+                       name="getCoordinator"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getCoordinator xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getCoordinator/text()}&lt;/ns:getCoordinator&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getCoordinatorResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesCoordinationDetail</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getCoordinatorResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getParticipant"
+                       maxRedirects="100"
+                       name="getParticipant"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getParticipant xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getParticipant/text()}&lt;/ns:getParticipant&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getParticipantResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesCoordinationDetailListResult</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getParticipantResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getProcessDetail"
+                       maxRedirects="100"
+                       name="getProcessDetail"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getProcessDetail xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$getProcessDetail/text()}&lt;/ns:getProcessDetail&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="getProcessDetailResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesProcessInfo</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getProcessDetailResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="getDeployedProcessDetail"
+                       maxRedirects="100"
+                       name="getDeployedProcessDetail"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input>
+                     <parameter name="getDeployedProcessDetail"
+                                required="false"
+                                testWith=""
+                                type="reference">
+                        <options>
+                           <option name="referenceTo">GetDeployedProcessDetail_AT</option>
+                        </options>
+                     </parameter>
+                  </input>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:getDeployedProcessDetail xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"
+                                   namespace="{$getDeployedProcessDetail/namespace/text()}"&gt;{$getDeployedProcessDetail/text()}&lt;/ns:getDeployedProcessDetail&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            name="getDeployedProcessDetailResponse"
+                            type="reference">
+                        <options>
+                           <option name="referenceTo">AesDeployedProcessInfo</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='getDeployedProcessDetailResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       inherits="BaseAction"
+                       label="findDeploymentPlan"
+                       maxRedirects="100"
+                       name="findDeploymentPlan"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description/>
+                  <inheritanceMetadata>
+                     <section type="output">
+                        <section type="outputFields"/>
+                     </section>
+                     <section type="restSimpleBinding">
+                        <section type="body">
+                           <attribute inherit="overwrite" name="content" type="content"/>
+                        </section>
+                        <section type="httpHeaders">
+                           <attribute inherit="inherit" name="Content-Type" type="header"/>
+                        </section>
+                        <section type="otherParams"/>
+                     </section>
+                  </inheritanceMetadata>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding url="http://10.75.154.62:7080/process-engine/services/ActiveBpelAdmin"
+                                        verb="POST">
+                        <authentication>
+                           <username/>
+                           <password/>
+                           <isExpressionInPassword/>
+                        </authentication>
+                        <body>&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+   &lt;soap:Header/&gt;
+   &lt;soap:Body&gt;
+      &lt;ns:findDeploymentPlan xmlns:ns="http://schemas.active-endpoints.com/engineapi/2010/09/ProcessManagementTypes.xsd"&gt;{$findDeploymentPlan/text()}&lt;/ns:findDeploymentPlan&gt;
+   &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description="" name="findDeploymentPlanResponse" type="reference">
+                        <options>
+                           <option name="referenceTo">AesDeploymentPlan</option>
+                        </options>
+                        <xquery>{util:simplifyXml(//*[local-name()='findDeploymentPlanResponse'])}</xquery>
+                     </field>
+                  </output>
+               </action>
+            </actions>
+            <objects>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesActivityAction">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="location" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesAlarmInfo">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="locationId" type="double"/>
+                     <field name="locationPath" type="string"/>
+                     <field name="processGroup" type="string"/>
+                     <field name="alarmId" type="double"/>
+                     <field name="groupId" type="double"/>
+                     <field name="deadline" type="datetime"/>
+                     <field name="processName" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessName_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesAlarmListingFilter">
+                  <description/>
+                  <detail>
+                     <field name="listStart" type="double"/>
+                     <field name="maxReturn" type="double"/>
+                     <field name="processId" type="string"/>
+                     <field name="processGroup" type="string"/>
+                     <field name="hideSystem" type="boolean"/>
+                     <field name="processName" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessName_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="deadlineRange" type="reference">
+                        <options>
+                           <option name="referenceTo">AesDateRange</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesAlarmListingResult">
+                  <description/>
+                  <detail>
+                     <field name="totalRowCount" type="double"/>
+                     <field name="completeRowCount" type="boolean"/>
+                     <field name="alarm" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesAlarmInfo</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="locationPathList" type="reference">
+                        <options>
+                           <option name="referenceTo">AesLocationPathList</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesCoordinationDetail">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="coordinationId" type="string"/>
+                     <field name="state" type="string"/>
+                     <field name="locationPath" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesCoordinationDetailListResult">
+                  <description/>
+                  <detail>
+                     <field name="coordinationDetail" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesCoordinationDetail</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesCorrelationData">
+                  <description/>
+                  <detail>
+                     <field name="value" type="string"/>
+                     <field name="name" type="reference">
+                        <options>
+                           <option name="referenceTo">Name_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesDateRange">
+                  <description/>
+                  <detail>
+                     <field name="on" type="date"/>
+                     <field name="between" type="reference">
+                        <options>
+                           <option name="referenceTo">Between_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesDeployedProcessInfo">
+                  <description/>
+                  <detail>
+                     <field name="sourceXml" type="string"/>
+                     <field name="bpelSourceXml" type="string"/>
+                     <field name="processName" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessName_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesDeployedProcessListingResult">
+                  <description/>
+                  <detail>
+                     <field name="totalRowCount" type="double"/>
+                     <field name="completeRowCount" type="boolean"/>
+                     <field name="process" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesDeployedProcessInfo</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesDeploymentPlan">
+                  <description/>
+                  <detail>
+                     <field name="version" type="string"/>
+                     <field name="contributionId" type="string"/>
+                     <field name="tenantContextId" type="string"/>
+                     <field name="bpelSource" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesGetProcessEventData">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="version" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesGetProcessList">
+                  <description/>
+                  <detail>
+                     <field name="filter" type="reference">
+                        <options>
+                           <option name="referenceTo">AesProcessListingFilter</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="processIdFilter" type="reference">
+                        <options>
+                           <option name="referenceTo">AesProcessIdListingFilter</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesGetVariable">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="variablePath" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesLocationPath">
+                  <description/>
+                  <detail>
+                     <field name="locationId" type="double"/>
+                     <field name="locationPath" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesLocationPathList">
+                  <description/>
+                  <detail>
+                     <field name="locationPath" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesLocationPath</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesLogEvent">
+                  <description/>
+                  <detail>
+                     <field name="id" type="double"/>
+                     <field name="processId" type="string"/>
+                     <field name="path" type="string"/>
+                     <field name="eventId" type="double"/>
+                     <field name="name" type="string"/>
+                     <field name="fault" type="string"/>
+                     <field name="info" type="string"/>
+                     <field name="sourceId" type="double"/>
+                     <field name="sessionId" type="double"/>
+                     <field name="planId" type="string"/>
+                     <field name="instanceLocationId" type="double"/>
+                     <field name="defLocationId" type="double"/>
+                     <field name="correlationId" type="double"/>
+                     <field name="timestamp" type="double"/>
+                     <field name="data" type="string"/>
+                     <field name="tenantContextId" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesLogEventFilter">
+                  <description/>
+                  <detail>
+                     <field name="listStart" type="double"/>
+                     <field name="maxReturn" type="double"/>
+                     <field name="processId" type="string"/>
+                     <field name="counterId" type="double"/>
+                     <field name="query" type="string"/>
+                     <field name="filterType" type="double"/>
+                     <field name="pagingOffset" type="double"/>
+                     <field name="instanceLocationId" type="double"/>
+                     <field name="tenantContextId" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesLogEventListingResult">
+                  <description/>
+                  <detail>
+                     <field name="totalRowCount" type="double"/>
+                     <field name="completeRowCount" type="boolean"/>
+                     <field name="logEvent" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesLogEvent</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesMessageReceiverInfo">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="locationId" type="double"/>
+                     <field name="locationPath" type="string"/>
+                     <field name="partnerLinkId" type="double"/>
+                     <field name="partnerLinkName" type="string"/>
+                     <field name="operation" type="string"/>
+                     <field name="concurrent" type="boolean"/>
+                     <field name="groupId" type="double"/>
+                     <field name="processName" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessName_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="portType" type="reference">
+                        <options>
+                           <option name="referenceTo">PortType_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="correlationData" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesCorrelationData</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesMessageReceiverListingFilter">
+                  <description/>
+                  <detail>
+                     <field name="listStart" type="double"/>
+                     <field name="maxReturn" type="double"/>
+                     <field name="processId" type="string"/>
+                     <field name="partnerLinkName" type="string"/>
+                     <field name="operation" type="string"/>
+                     <field name="portType" type="reference">
+                        <options>
+                           <option name="referenceTo">PortType_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesMessageReceiverListingResult">
+                  <description/>
+                  <detail>
+                     <field name="totalRowCount" type="double"/>
+                     <field name="completeRowCount" type="boolean"/>
+                     <field name="messageReceiver" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesMessageReceiverInfo</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="locationPathList" type="reference">
+                        <options>
+                           <option name="referenceTo">AesLocationPathList</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesProcessIdListingFilter">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesProcessInfo">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="processState" type="string"/>
+                     <field name="processStateReason" type="string"/>
+                     <field name="title" type="string"/>
+                     <field name="planId" type="string"/>
+                     <field name="version" type="double"/>
+                     <field name="persistenceType" type="string"/>
+                     <field name="processGroup" type="string"/>
+                     <field name="processInitiator" type="string"/>
+                     <field name="processInitiatorTenantContext" type="string"/>
+                     <field name="tenantContext" type="string"/>
+                     <field name="started" type="datetime"/>
+                     <field name="modified" type="datetime"/>
+                     <field name="completed" type="datetime"/>
+                     <field name="cid" type="string"/>
+                     <field name="processName" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessName_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesProcessListingFilter">
+                  <description/>
+                  <detail>
+                     <field name="listStart" type="double"/>
+                     <field name="maxReturn" type="double"/>
+                     <field name="processState" type="string"/>
+                     <field name="processGroup" type="string"/>
+                     <field name="hideSystem" type="boolean"/>
+                     <field name="advancedQuery" type="string"/>
+                     <field name="hidePublicTenant" type="boolean"/>
+                     <field name="processName" type="reference">
+                        <options>
+                           <option name="referenceTo">ProcessName_AT</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="created" type="reference">
+                        <options>
+                           <option name="referenceTo">AesDateRange</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                     <field name="completed" type="reference">
+                        <options>
+                           <option name="referenceTo">AesDateRange</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesProcessListingResult">
+                  <description/>
+                  <detail>
+                     <field name="totalRowCount" type="double"/>
+                     <field name="completeRowCount" type="boolean"/>
+                     <field name="process" type="objectlist">
+                        <options>
+                           <option name="referenceTo">AesProcessInfo</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesRequestWithAttachmentId">
+                  <description/>
+                  <detail>
+                     <field name="attachmentId" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesRequestWithProcessId">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesVoidType">
+                  <description/>
+                  <detail/>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="AesXmlContent">
+                  <description/>
+                  <detail/>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Between_AT">
+                  <description/>
+                  <detail>
+                     <field name="fromDate" type="datetime"/>
+                     <field name="toDate" type="datetime"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetApiVersionResponse_AT">
+                  <description/>
+                  <detail>
+                     <field name="major" type="double"/>
+                     <field name="minor" type="double"/>
+                     <field name="getApiVersionResponse" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetDeployedProcessDetail_AT">
+                  <description/>
+                  <detail>
+                     <field name="namespace" type="string"/>
+                     <field name="getDeployedProcessDetail" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetFullProcessLogResponse_AT">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="log" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetProcessAttachmentResponse_AT">
+                  <description/>
+                  <detail>
+                     <field name="attachmentId" type="string"/>
+                     <field name="attachment" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetProcessLogResponse_AT">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="log" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetProcessStateResponse_AT">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="state" type="reference">
+                        <options>
+                           <option name="referenceTo">AesXmlContent</option>
+                           <option name="relationshipName">Child</option>
+                        </options>
+                     </field>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="GetProcessState_AT">
+                  <description/>
+                  <detail>
+                     <field name="processId" type="string"/>
+                     <field name="eventCounter" type="double"/>
+                     <field name="eventIndex" type="double"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="Name_AT">
+                  <description/>
+                  <detail>
+                     <field name="namespace" type="string"/>
+                     <field name="name" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="PortType_AT">
+                  <description/>
+                  <detail>
+                     <field name="namespace" type="string"/>
+                     <field name="portType" type="string"/>
+                  </detail>
+               </processObject>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="ProcessName_AT">
+                  <description/>
+                  <detail>
+                     <field name="namespace" type="string"/>
+                     <field name="processName" type="string"/>
+                  </detail>
+               </processObject>
+            </objects>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>8rWrlaaKMeHdJAHFygqlm6</types1:GUID>
+      <types1:DisplayName>AgentAdmin</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2021-11-24T17:22:45.822Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

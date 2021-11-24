@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "8rWrlaaKMeHdJAHFygqlm6",
+    "name" : "AgentAdmin",
+    "type" : "AI_SERVICE_CONNECTOR",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "clBghNf4TsrT2ht-gt-3465309-2020-07-23T22:18:53.043Z::svc.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
